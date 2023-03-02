@@ -1,0 +1,50 @@
+<section class="center-box">
+  <div class="default-form" *ngIf="wordConverted == false; else pluralResult">
+    <h2>Plural Generator</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Word in singular noun</mat-label>
+      <input
+        matInput
+        placeholder="Type here your word"
+        [(ngModel)]="singularWord"
+        (ngModelChange)="validateWord()"
+      />
+      <button
+        *ngIf="singularWord"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="singularWord = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint class="error-message" *ngIf="invalidWord"
+        >A word must be informed.
+      </mat-hint>
+    </mat-form-field>
+    <span *ngIf="invalidWord" class="rule-description"></span>
+    <button mat-raised-button color="primary" (click)="convertWord()">
+      Generate plural
+    </button>
+  </div>
+</section>
+<ng-template #pluralResult>
+  <div class="default-form">
+    <h2>Plural Generator</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Plural result</mat-label>
+      <input
+        matInput
+        placeholder="Type here your word"
+        value="{{ pluralWord }}"
+        disabled="true"
+      />
+    </mat-form-field>
+    <span class="rule-description">
+      {{ ruleApplied }}
+    </span>
+    <button mat-raised-button color="primary" (click)="goBack()">
+      Generate again
+    </button>
+  </div>
+</ng-template>
