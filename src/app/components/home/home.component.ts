@@ -78,7 +78,7 @@ export class HomeComponent {
       'y',
       'z',
     ];
-    return consonantArray.includes(text.charAt(text.length - 1));
+    return consonantArray.includes(text.charAt(text.length - 2));
   }
 
   validateWord(): void {
